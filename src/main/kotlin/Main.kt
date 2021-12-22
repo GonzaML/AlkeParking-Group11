@@ -1,5 +1,7 @@
-fun main(args: Array<String>) {
+fun main() {
 
+    //-------------------------------------
+    //Creation of the vehicles to insert
     val car = Vehicle("AA111AA", VehicleType.CAR, "DISCOUNT_CARD_001")
     val moto = Vehicle("BB222BB", VehicleType.MOTORCYCLE)
     val miniBus = Vehicle("CC333CC", VehicleType.MINIBUS, "DISCOUNT_CARD_002")
@@ -30,6 +32,9 @@ fun main(args: Array<String>) {
     val miniBus6 = Vehicle("TT021FF", VehicleType.MINIBUS)
     val bus6 = Vehicle("SS020FF",VehicleType.BUS)
 
+
+    //-------------------------------------
+    //Vehicles being inserted in the parking set
     val parking = Parking(mutableSetOf(
         car, moto, miniBus, bus,
         car2, moto2, miniBus2, bus2,
@@ -39,16 +44,26 @@ fun main(args: Array<String>) {
         car6, moto6, miniBus6, bus6,
     ))
 
+    //-------------------------------------
+    //Check in and confirmation of each vehicle
     parking.vehicles.forEach {
         if(parking.checkInVehicle(it)) println("Welcome to AlkeParking!")
         else println("Sorry, the check-in failed")
     }
 
+    //-------------------------------------
+    //Test of an repeated vehicle on the set
     val car7 = Vehicle("AA111AA", VehicleType.CAR, "DISCOUNT_CARD_001")
-
     parking.checkInVehicle(car7)
 
+    //-------------------------------------
+    //Check out of a Vehicle and Test of trying to check out a vehicle that you already checked out
+    parking.checkOutVehicle(moto)
     parking.checkOutVehicle(moto)
 
+    //-------------------------------------
+    //Print of total earnings and Print of the vehicles plate parked
+    parking.totalEarnings()
+    parking.listVehicles()
 
 }
